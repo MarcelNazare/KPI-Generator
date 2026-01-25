@@ -2,11 +2,11 @@ import os
 import sys
 import pathlib
 import pandas as pd
-from parser import file_parser
 from google import genai
-from google.genai import types
-from dotenv import load_dotenv
 from datetime import datetime
+from google.genai import types
+from parser import file_parser
+from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env file  
 api_key = os.getenv("api_key")
