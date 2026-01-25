@@ -43,6 +43,13 @@ def ai_kpi_generator(columns,instructions):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+def to_markdown(response):
+    try:
+        # Assuming response is a string that needs to be converted to markdown
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return None
 
 def main():
     print("Hello from kpi-generator!")
