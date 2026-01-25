@@ -14,10 +14,10 @@ api_key = os.getenv("api_key")
 def read_columns(csv_path):
     try:
         df = pd.read_csv(csv_path,nrows=0)
-        columns_names =df.columns.to_list()
+        return df.columns.to_list()
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-    return columns_names
+        return []
 
 def read_file(file_path):
     try:
@@ -45,11 +45,13 @@ def ai_kpi_generator(columns,instructions):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-def to_markdown(response):
+def to_markdown(file_name,response):
     dir_path = pathlib.Path.cwd() / "markdowns"
     dir_path.mkdir(parents=True, exist_ok=True)
-    filename = f"response_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+    file_name = file_name.strip('.csv')
+    filename = f"{file_name.upper()}_response_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
     file_path = dir_path / filename
+
     try:
         with file_path.open("w", encoding="utf-8") as md_file:
             md_file.write(response)
@@ -60,10 +62,11 @@ def to_markdown(response):
 def main():
     print("Hello from kpi-generator!")
     instructions = read_file("Prompt.txt")
-    csv_path = file_parser()
+    file_name,csv_path = file_parser()
     column_names = read_columns(csv_path)
     response = ai_kpi_generator(column_names,instructions)
-    to_markdown(response)
+    if response:
+        to_markdown(file_name,response)
 
 if __name__ == "__main__":
     main()

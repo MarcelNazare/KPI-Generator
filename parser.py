@@ -59,6 +59,9 @@ def file_parser():
         sys.exit(1)
 
     print(f"File path received: {candidate}")
-    return candidate
+    return file_name, candidate
 
 
+
+file, path = file_parser()
+print(f"Using file: {file} at path: {path}")
