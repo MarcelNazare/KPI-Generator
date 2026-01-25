@@ -61,7 +61,8 @@ def to_markdown(file_name,response):
     
 def main():
     print("Hello from kpi-generator!")
-    instructions = read_file("Prompt.txt")
+    prompt = "Prompt.txt"
+    instructions = read_file(prompt)
     file_name,csv_path = file_parser()
     column_names = read_columns(csv_path)
     response = ai_kpi_generator(column_names,instructions)
