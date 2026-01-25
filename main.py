@@ -1,14 +1,17 @@
+import os
+import sys
+import pathlib
+import argparse
+import pandas as pd
+from parser import file_parser
 from google import genai
 from google.genai import types
-import pathlib
-import pandas as pd
-import os
 from dotenv import load_dotenv
-load_dotenv()  # Load environment variables from .env file  
+from datetime import datetime
 
+load_dotenv()  # Load environment variables from .env file  
 api_key = os.getenv("api_key")
 
-csv_path = "2.csv"
 def read_columns(csv_path):
     try:
         df = pd.read_csv(csv_path,nrows=0)
@@ -39,26 +42,30 @@ def ai_kpi_generator(columns,instructions):
                 system_instruction=f"{instructions}"),
             contents=f"{columns}"
         )
-        print(response.text)
+        return response.text
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
 def to_markdown(response):
+    dir_path = pathlib.Path.cwd() / "markdowns"
+    dir_path.mkdir(parents=True, exist_ok=True)
+    filename = f"response_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+    file_path = dir_path / filename
     try:
-        # Assuming response is a string that needs to be converted to markdown
-
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        return None
-
+        with file_path.open("w", encoding="utf-8") as md_file:
+            md_file.write(response)
+        print(f"✅ Response saved to '{file_path}'")
+    except OSError as e:
+        print(f"❌ Error saving file: {e}", file=sys.stderr)
+    
 def main():
     print("Hello from kpi-generator!")
-    file = read_file("Prompt.txt")
+    instructions = read_file("Prompt.txt")
+    csv_path = file_parser()
     column_names = read_columns(csv_path)
-    instructions = file
-    ai_kpi_generator(column_names,instructions)
-
-
+    response = ai_kpi_generator(column_names,instructions)
+    to_markdown(response)
 
 if __name__ == "__main__":
     main()
+ 
