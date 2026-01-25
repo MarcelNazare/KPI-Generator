@@ -60,8 +60,3 @@ def file_parser():
 
     print(f"File path received: {candidate}")
     return file_name, candidate
-
-
-
-file, path = file_parser()
-print(f"Using file: {file} at path: {path}")
