@@ -2,7 +2,7 @@
 REM kpi_gen.bat - wrapper to call main.py with a file location and optional file name
 REM Usage: kpi_gen.bat "C:\path\to\directory_or_file" "optional_filename.csv"
 REM Activate the virtual environment
-call C:/Users/marcel/Desktop/KPI Generator/.venv/Scripts/activate.bat
+call "%~dp0.venv\Scripts\activate.bat"
 REM Change working directory to the script location (project root)
 pushd "%~dp0" || (
   echo Failed to change directory to script folder "%~dp0"
