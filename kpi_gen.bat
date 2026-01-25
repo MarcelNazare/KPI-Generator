@@ -12,7 +12,7 @@ pushd "%~dp0" || (
 REM Ensure at least one argument (file location) is provided
 if "%~1"=="" (
   echo Usage: %~n0 "file_location" [file_name]
-  echo Example: %~n0 "C:\Users\marcel\Desktop\KPI Generator" "data.csv"
+  echo Example: %~n0 "C:\Users\marcel\Desktop\KPI Generator\sample data" "dim_geography.csv"
   popd
   exit /b 1
 )
