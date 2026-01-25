@@ -1,10 +1,10 @@
 # KPI Generator
 
-A Python-based tool that automatically generates Key Performance Indicators (KPIs) from CSV data files using Google's Gemini AI model.
+A Python-based tool that automatically generates Key Performance Indicators (KPIs) and Key Metrics from CSV data files using Google's Gemini AI model.
 
 ## Overview
 
-KPI Generator analyzes CSV files and uses AI to intelligently generate relevant KPIs based on the data structure and content. It processes your data files and outputs markdown reports with generated KPI recommendations.
+KPI Generator analyzes CSV files and uses AI to intelligently generate relevant KPIs and Key Metrics based on the data structure and content. It processes your data files and outputs markdown reports with generated KPI recommendations.
 
 ## Requirements
 
