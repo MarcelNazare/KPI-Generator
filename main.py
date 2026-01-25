@@ -1,7 +1,6 @@
 import os
 import sys
 import pathlib
-import argparse
 import pandas as pd
 from parser import file_parser
 from google import genai
